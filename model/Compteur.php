@@ -15,5 +15,6 @@ namespace Model;
 
         protected $table = "compteur"; //par defaut il prent le nom de la classe qu'il met au pluriel et au au minuscule
         protected $guarded = [];
+        protected $primaryKey = 'idcompteur';
         public $timestamps = false;//pour igonrer les
 	}

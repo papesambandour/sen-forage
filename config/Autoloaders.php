@@ -12,7 +12,7 @@ namespace Config;
 class Autoloaders{
    public static function welcome_params(){
         return array(
-            'welcome_controller' => 'Accueil'
+            'welcome_controller' => 'AccueilCtrl'
         );
     }
 }

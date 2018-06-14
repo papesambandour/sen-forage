@@ -15,5 +15,6 @@ namespace Model;
 
         protected $table = "client"; //par defaut il prent le nom de la classe qu'il met au pluriel et au au minuscule
         protected $guarded = [];
+        protected $primaryKey = 'idClient';
         public $timestamps = false;//pour igonrer les
 	}

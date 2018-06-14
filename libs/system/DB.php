@@ -17,5 +17,6 @@ class DB extends Capsule
         $this->addConnection($paramsConnexion,"default");
         $this->setAsGlobal();
         $this->bootEloquent();
+        $this->bootEloquent();
     }
 }
