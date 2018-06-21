@@ -5,44 +5,26 @@
 
 $(function () {
 
-    ///ABBONNEMENT START
-    $('#addAbonClient').on('hidden.bs.modal', function () {
 
-       /* $.get('village/gets').done(function (data) {
-            loaderEnd();
-           var dataParsed = JSON.parse(data);
-           var html = '<option value="" selected hidden>...</option>';
-           for(var i = 0 ;i < dataParsed.length; i++)
-           {
-              html += '<option value="'+dataParsed[i].idvillage+'">'+dataParsed[i].nomvillage+'</option>'
-           }
-           $("#villageabonnee").html(html);
-        }).fail(function (err) {
-            loaderEnd();
-            alert("ERROR NETWOKING !!!");
-        })*/
-      cleanabonClien();
-    });
-    $("#fmrAddAbonn").on("submit",function (e) {
+    $("#fmraddRelever").on("submit",function (e) {
         e.preventDefault();
         loaderStart();
         var formData = getParamsForm($(this));
-        $.post("abonnement/create",formData).
+        $.post("facture/create",formData).
             done(function (data) {
                 console.log(data);
                 if(data == 1)
                 {
                     loaderEnd();
-                    $('#addAbonClient').modal('hide');
-                    myAlert("Aboonement ajouter avec success","success");
-                    cleanabonClien();
-                    $("#etat"+formData.idclientabonnee).html("<label style=\"background: green;color: white;border-radius: 5px\">Abonné</label>");
+                    $('#addRelever').modal('hide');
+                    myAlert("Relever ajouter avec success","success");
+                    cleanRevellerAdd();
                 }else if(data = 2)
                 {
                     loaderEnd();
-                    $('#addAbonClient').modal('hide');
-                    myAlert("Aboonement mise a jour avec success","success");
-                    cleanabonClien();
+                    $('#addRelever').modal('hide');
+                    cleanRevellerAdd();
+                    myAlert("Relever dejat ajouter pour cette mois","warning");
                 }
                 else{
                     loaderEnd();
@@ -54,42 +36,10 @@ $(function () {
             alert("ERROR NETWORKING");
         })
 
-    })
-  /*  $("#villageabonnee").on("change",function (e) {
-        $.get("client/cliNonAbonByIdVig/"+ $("#villageabonnee").val())
-            .done(function (data) {
-                loaderEnd();
-                var dataParsed = JSON.parse(data);
-                var html = '<option value="" selected hidden>...</option>';
-                for(var i = 0 ;i < dataParsed.length; i++)
-                {
-                    html += '<option value="'+dataParsed[i].idClient+'">'+dataParsed[i].nomcomplet+'</option>'
-                }
-                $("#clientabonnee").html(html);
-                $("#dateAbonement")[0].valueAsDate = new Date()
-            })
-
-    });*/
-
-    ///VILLAGE START
-    $('#addClient').on('shown.bs.modal', function () {
-        loaderStart();
-        $.get('village/gets').done(function (data) {
-            loaderEnd();
-           var dataParsed = JSON.parse(data);
-           var html = '<option value="" selected hidden>...</option>';
-           for(var i = 0 ;i < dataParsed.length; i++)
-           {
-              html += '<option value="'+dataParsed[i].idvillage+'">'+dataParsed[i].nomvillage+'</option>'
-           }
-           $("#villageClientAdd").html(html);
-        }).fail(function (err) {
-            loaderEnd();
-            alert("ERROR NETWOKING !!!");
-        })
     });
- $('#editClient').on('hidden.bs.modal', function () {
-     $("#villageClientEdit").removeAttr("disabled",true);
+
+ $('#addRelever').on('hidden.bs.modal', function () {
+     cleanRevellerAdd();
     });
 
 
@@ -198,12 +148,12 @@ $(function () {
     });
 
 //SEARCH client
-    $("#searchClient").on("keyup",function (e) {
+    $("#searchCompteur").on("keyup",function (e) {
         loaderStart();
-        if($("#searchClient").val() === '')
+        if($("#searchCompteur").val() === '')
         {
-            $.get("client/gets",{
-                item : $("#searchClient").val()
+            $.get("compteur/gets",{
+                item : $("#searchCompteur").val()
             }).done(function (data) {
                 loaderEnd();
                 try {
@@ -249,8 +199,8 @@ $(function () {
         }
 
         else {
-            $.get("client/search", {
-                item: $("#searchClient").val()
+            $.get("compteur/search", {
+                item: $("#searchCompteur").val()
             }).done(function (data) {
                 loaderEnd();
                 try {
@@ -411,59 +361,46 @@ function DelClient(e) {
         });
     }
 }
-function showAddAbonnement(e) {
+function showAddRelever(e) {
      loaderStart();
-        $.get('client/getClient/'+$(e).val()).done(function (data) {
-            console.log(data)
-            loaderEnd();
-            var dataParsed = JSON.parse(data);
-            if(dataParsed.abonnement != null)
+    // var numc = $(e).closest('tr').attr('data-numc');
+   //  alert(numc);
+   /* $(e).closest('tr').find ('td').each(function (index, elem) {
+        $(elem).text(client[$(elem).attr('data-columname')])
+    });
+*/
+        $.get('compteur/get/'+$(e).val()).
+        done(function (data) {
+            var html = "";
+            var datemy= new Date()
+            for(var i = datemy.getFullYear(); i > 2015;i--)
             {
-                $("#DescriptionAbon").val(dataParsed.abonnement.description);
-                $("#idAbonement").val(dataParsed.abonnement.idabonnement);
-                $("#btnAbonPopup").html("Editer");
-                $("#numAbon").html("  ABN-" + dataParsed.abonnement.numero);
-                $("#dateAbonement")[0].valueAsDate = new Date(dataParsed.abonnement.date_creation)
+                html += "<option value='"+i+"'>"+i+"</option>";
             }
-            else{
-                $("#btnAbonPopup").html("Ajouter");
-                $("#numAbon").html("");
-                $("#dateAbonement")[0].valueAsDate = new Date()
-            }
-
-            $("#nomclientabonnee") .val(dataParsed.nomcomplet);
-            $("#idclientabonnee") .val(dataParsed.idClient);
-
+            $("#anneerelever").html(html);
+            $("#moisrelever").val(datemy.getMonth() + 1);
+            $("#anneerelever").val(datemy.getFullYear());
+          //  console.log(html)
+            var dataParsed = JSON.parse(data);
+            $("#cccmpt").val(dataParsed.consommationl + " métre cube ("+  dataParsed.consommationc+" m3)");
+            $("#idCompteur").val(dataParsed.idcompteur);
+            $("#cMensuelcmpt").val(dataParsed.conso_encours);
+            loaderEnd();
         }).fail(function (err) {
             loaderEnd();
             alert("Error networking");
         });
-
 }
 
 /*
 CLEAN ALL INPUT VILLAGE ADD AND EDIT
  */
-function cleanclient() {
-    $("#nomclientAdd") .val('');
-    $("#villageClientAdd") .val('');
-    $("#etatclientAdd") .val('');
-    $("#adresseclientAdd") .val('');
-    $("#telclientAdd") .val('');
 
-    $("#idclientEdit") .val('');
-    $("#nomclientEdit") .val('');
-    $("#villageClientEdit") .val('');
-    $("#etatclientEdit") .val('');
-    $("#adresseclientEdit") .val('');
-    $("#telclientEdit") .val('');
-}
-function cleanabonClien() {
-    $("#nomclientabonnee") .val('');
-    $("#idclientabonnee") .val('');
-    $("#dateAbonement") .val('');
-    $("#DescriptionAbon") .val('');
-    $("#idAbonement") .val('');
+function cleanRevellerAdd() {
+    $("#cMensuelcmpt") .val('');
+    $("#idCompteur") .val('');
+    $("#moisrelever") .val('');
+    $("#anneerelever") .val('');
 
 }
 

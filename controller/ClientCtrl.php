@@ -12,6 +12,7 @@
 namespace Controller ;
     use Libs\helper\Utils;
     use Libs\system\Controller;
+    use Model\Abonnement;
     use Model\Client;
     use Model\Config;
     use Model\Village;
@@ -32,6 +33,10 @@ namespace Controller ;
             }
             return $this->view->load("client/index",compact(['clients','villages','idlaastvillageinclient']));
 			
+        }
+        public function cliNonAbonByIdVig($id){
+            $clients =Client::where("id_village","=",$id)->where("estabonne","=",0)->get();
+            echo json_encode($clients);
         }
         public function filterClientByVilage(){
             $clients =null;
@@ -58,10 +63,21 @@ namespace Controller ;
             $village = Village::find(Utils::get("villageClientAdd"));
             $client->nomcomplet = Utils::get("nomclientAdd");
             $client->etat_client = Utils::get("etatclientAdd");
+            $client->tel = Utils::get("telclientAdd");
+            $client->adresse = Utils::get("adresseclientAdd");
             $client->id_chefvillage = $village->chefdevillage_id;
             $client->id_village = $village->idvillage;
             $client->save();
-            echo $client->idClient;
+            $idlaastvillageinclient =Config::get(Config::LAST_ID_VILLAGE_IN_CLIENT);
+
+            if($idlaastvillageinclient ==$village->idvillage || $idlaastvillageinclient == '')
+            {
+                echo $client->idClient;
+            }
+            else{
+                echo -1 ;
+            }
+
         }
         public function update($id)
         {
@@ -79,10 +95,13 @@ namespace Controller ;
             }
             $client->nomcomplet = Utils::get("nomclientEdit");
             $client->etat_client = Utils::get("etatclientEdit");
+            $client->tel = Utils::get("telclientEdit");
+            $client->adresse = Utils::get("adresseclientEdit");
             $client->id_village = $village->idvillage;
 
             $client->save();
-            echo 1;
+           echo 1;
+
         }
         public function gets()
         {
@@ -115,6 +134,21 @@ namespace Controller ;
             if(is_object($client))
             {
                 echo json_encode(["client"=>$client,"villages"=>$villages]);
+            }
+            else
+            {
+                echo  1 ;
+            }
+
+        } public function getClient($id)
+        {
+            $client = Client::find($id);
+            $abonnement =Abonnement::where("id_client","=",$id)->get();
+            $client->abonnement = count($abonnement) > 0 ? $abonnement[0] : null ;
+
+            if(is_object($client))
+            {
+                echo json_encode($client);
             }
             else
             {

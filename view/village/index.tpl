@@ -17,18 +17,18 @@
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
 				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
 				<tr >
-					<th style="color: white">ID</th>
+					<th style="color: white">CODE</th>
 					<th style="color: white">NOM VILLAGE</th>
-					<th style="color: white">ETAT</th>
+					<th style="color: white">POPULATION</th>
 					<th style="color: white; text-align: center">ACTION</th>
 				</tr>
 				</thead>
 				<tbody id="tbody">
                 {foreach from=$villages item=ligne}
 					<tr>
-						<td id="id{$ligne.idvillage}" > {$ligne.idvillage}</td>
+						<td id="id{$ligne.idvillage}" > VILG-{$ligne.idvillage}</td>
 						<td id="nom{$ligne.idvillage}" >  {$ligne.nomvillage}</td>
-						<td id="eta{$ligne.idvillage}" > {$ligne.etat_village}</td>
+						<td id="eta{$ligne.idvillage}" > {$ligne.population}</td>
 						<td style="text-align: center">
 							<button class="btn btn-success" value="{$ligne.idvillage}"
 									onclick="showChefDevillage(this)"
@@ -73,7 +73,7 @@
 				<div class="modal-body">
 					<form id="fmrAddVillage">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<h5 style="color: black;margin-bottom: 10px">Village</h5>
 								<div class="form-group">
 									<label for="nomvillageAdd" class="control-label">Nom:</label>
@@ -89,11 +89,19 @@
 								</div>
 							</div>
 
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<h5 style="color:black;margin-bottom: 10px">Chef de village</h5>
 								<div class="form-group">
 									<label for="nomchefVillageAdd" class="control-label">Nom Complete:</label>
 									<input type="text" class="form-control" id="nomchefVillageAdd" name="nomchefVillageAdd" required ">
+								</div>
+								<div class="form-group">
+									<label for="telchefVillageAdd" class="control-label">Téléphone:</label>
+									<input type="tel" class="form-control" id="telchefVillageAdd" name="telchefVillageAdd" required ">
+								</div>
+								<div class="form-group">
+									<label for="addresschefVillageAdd" class="control-label">Adresse:</label>
+									<input type="text" class="form-control" id="addresschefVillageAdd" name="addresschefVillageAdd" required ">
 								</div>
 								<div class="form-group">
 									<label for="etatvillage" class="control-label">Etat:</label>

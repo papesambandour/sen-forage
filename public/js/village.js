@@ -24,9 +24,9 @@ $(function () {
             if(data >= 1)
             {
                var html = "<tr>\n" +
-                   "\t\t\t\t\t\t<td id=\"id"+data+"\" > "+data+"</td>\n" +
+                   "\t\t\t\t\t\t<td id=\"id"+data+"\" >VILG- "+data+"</td>\n" +
                    "\t\t\t\t\t\t<td id=\"nom"+data+"\" >  "+formData.nomvillageAdd+"</td>\n" +
-                   "\t\t\t\t\t\t<td id=\"eta"+data+"\" > "+formData.etatvillageAdd +"</td>\n" +
+                   "\t\t\t\t\t\t<td id=\"eta"+data+"\" > "+1+"</td>\n" +
                    "\t\t\t\t\t\t<td style=\"text-align: center\">\n" +
                    "<button class=\"btn btn-success\" value=\""+data+"\"\n" +
                    "\t\t\t\t\t\t\t\t\tonclick=\"showChefDevillage(this)\"\n" +
@@ -72,9 +72,7 @@ $(function () {
             var id = $("#idvillageEdit") .val();
             if(data == 1)
             {
-                $("#id"+id ).html($("#idvillageEdit").val());
                 $("#nom"+id ).html($("#nomvillageEdit").val());
-                $("#eta"+id ).html($("#etatvillageEdit").val());
                 loaderEnd();
                 cleanVillage();
                 $("#editVillage").modal("hide");
@@ -106,9 +104,9 @@ $(function () {
                     for(var i = 0 ; i < dataParsed.length ; i++)
                     {
                         html += "<tr>\n" +
-                            "\t\t\t\t\t\t<td id=\"id"+dataParsed[i].idvillage+"\" > "+dataParsed[i].idvillage +"</td>\n" +
+                            "\t\t\t\t\t\t<td id=\"id"+dataParsed[i].idvillage+"\" > VILG-"+dataParsed[i].idvillage +"</td>\n" +
                             "\t\t\t\t\t\t<td id=\"nom"+dataParsed[i].idvillage+"\" >  "+dataParsed[i].nomvillage+"</td>\n" +
-                            "\t\t\t\t\t\t<td id=\"eta"+dataParsed[i].idvillage+"\" > "+dataParsed[i].etat_village+"</td>\n" +
+                            "\t\t\t\t\t\t<td id=\"eta"+dataParsed[i].idvillage+"\" > "+dataParsed[i].population+"</td>\n" +
                             "\t\t\t\t\t\t<td style=\"text-align: center\">\n" +
                             "<button class=\"btn btn-success\" value=\""+dataParsed[i].idvillage+"\"\n" +
                             "\t\t\t\t\t\t\t\t\tonclick=\"showChefDevillage(this)\"\n" +
@@ -144,23 +142,24 @@ $(function () {
                 try {
                     var dataParsed = JSON.parse(data);
                     var html = "";
-                    for (var i = 0; i < dataParsed.length; i++) {
+                    for(var i = 0 ; i < dataParsed.length ; i++)
+                    {
                         html += "<tr>\n" +
-                            "\t\t\t\t\t\t<td id=\"id" + dataParsed[i].idvillage + "\" > " + dataParsed[i].idvillage + "</td>\n" +
-                            "\t\t\t\t\t\t<td id=\"nom" + dataParsed[i].idvillage + "\" >  " + dataParsed[i].nomvillage + "</td>\n" +
-                            "\t\t\t\t\t\t<td id=\"eta" + dataParsed[i].idvillage + "\" > " + dataParsed[i].etat_village + "</td>\n" +
+                            "\t\t\t\t\t\t<td id=\"id"+dataParsed[i].idvillage+"\" > VILG-"+dataParsed[i].idvillage +"</td>\n" +
+                            "\t\t\t\t\t\t<td id=\"nom"+dataParsed[i].idvillage+"\" >  "+dataParsed[i].nomvillage+"</td>\n" +
+                            "\t\t\t\t\t\t<td id=\"eta"+dataParsed[i].idvillage+"\" > "+dataParsed[i].population+"</td>\n" +
                             "\t\t\t\t\t\t<td style=\"text-align: center\">\n" +
-                            "<button class=\"btn btn-success\" value=\"" + dataParsed[i].idvillage + "\"\n" +
+                            "<button class=\"btn btn-success\" value=\""+dataParsed[i].idvillage+"\"\n" +
                             "\t\t\t\t\t\t\t\t\tonclick=\"showChefDevillage(this)\"\n" +
                             "\t\t\t\t\t\t\t\t\tdata-toggle=\"modal\" data-target=\"#showchef\">\n" +
                             "\t\t\t\t\t\t\t\t<i class=\"fa fa-eye\"> Chef</i>\n" +
-                            "\t\t\t\t\t\t\t</button>\n" +
-                            "\t\t\t\t\t\t\t<button class=\"btn btn-success\" value=\"" + dataParsed[i].idvillage + "\"\n" +
+                            "\t\t\t\t\t\t\t</button>\n"+
+                            "\t\t\t\t\t\t\t<button class=\"btn btn-success\" value=\""+dataParsed[i].idvillage+"\"\n" +
                             "\t\t\t\t\t\t\t\t\tonclick=\"showEditVillage(this)\"\n" +
                             "\t\t\t\t\t\t\t\t\tdata-toggle=\"modal\" data-target=\"#editVillage\">\n" +
                             "\t\t\t\t\t\t\t\t<i class=\"fa fa-edit\"> Edit</i>\n" +
                             "\t\t\t\t\t\t\t</button>\n" +
-                            "\t\t\t\t\t\t\t<button class=\"btn btn-warning\" value=\"" + dataParsed[i].idvillage + "\" onclick=\"DelVillage(this)\">\n" +
+                            "\t\t\t\t\t\t\t<button class=\"btn btn-warning\" value=\""+dataParsed[i].idvillage+"\" onclick=\"DelVillage(this)\">\n" +
                             "\t\t\t\t\t\t\t\t<i class=\"fa fa-trash\"> Del</i>\n" +
                             "\t\t\t\t\t\t\t</button>\n" +
                             "\n" +
@@ -265,6 +264,11 @@ CLEAN ALL INPUT VILLAGE ADD AND EDIT
 function cleanVillage() {
     $("#nomvillageAdd") .val('');
     $("#etatvillageAdd") .val('');
+    $("#addresschefVillageAdd") .val('');
+    $("#telchefVillageAdd") .val('');
+    $("#nomchefVillageAdd") .val('');
+
+
     $("#nomvillageEdit") .val('');
     $("#etatvillageEdit") .val('');
     $("#idvillageEdit") .val('');

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-5, created on 2018-06-16 18:05:38
-  from '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/client/index.tpl' */
+/* Smarty version 3.1.33-dev-5, created on 2018-06-15 17:52:25
+  from '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/abonnement/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-5',
-  'unifunc' => 'content_5b2535524ee958_07360340',
+  'unifunc' => 'content_5b23e0b973b683_17529949',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '2f72662c1749bd675fdfd95d36bfdd69d43388cc' => 
+    '21d9bd27a12272e17543f9cae3b69ccf2a104faa' => 
     array (
-      0 => '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/client/index.tpl',
-      1 => 1529165136,
+      0 => '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/abonnement/index.tpl',
+      1 => 1529073886,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b2535524ee958_07360340 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b23e0b973b683_17529949 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21349569945b2535524126e4_59254831', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4604785375b23e0b9693c31_37746626', 'body');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21451105005b2535524ebab8_00345074', "js");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16334901495b23e0b97385e7_89784335', "js");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, '../layout/Main.tpl');
 }
 /* {block 'body'} */
-class Block_21349569945b2535524126e4_59254831 extends Smarty_Internal_Block
+class Block_4604785375b23e0b9693c31_37746626 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_21349569945b2535524126e4_59254831',
+    0 => 'Block_4604785375b23e0b9693c31_37746626',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -50,7 +50,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 
-			<button class="btn btn-success" data-toggle="modal" data-target="#addClient"><i class="fa fa-plus"> Client</i></button>
+			<button class="btn btn-success" data-toggle="modal" data-target="#addClient"><i class="fa fa-plus"> Abonné</i></button>
 			<div class="row">
 				<div class="col-sm-3 " style="position: relative;top:0">
 					<input class="form-control pull-right" type="text" placeholder="Rechercher" id="searchClient"  />
@@ -65,23 +65,23 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <?php if ($_smarty_tpl->tpl_vars['idlaastvillageinclient']->value != '') {?>
 							<option value="">Tous les village</option>
                         <?php }?>
-						<?php
+                        <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['villages']->value, 'ligne');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['ligne']->value) {
 ?>
-							<?php if ($_smarty_tpl->tpl_vars['idlaastvillageinclient']->value == $_smarty_tpl->tpl_vars['ligne']->value['idvillage']) {?>
+                            <?php if ($_smarty_tpl->tpl_vars['idlaastvillageinclient']->value == $_smarty_tpl->tpl_vars['ligne']->value['idvillage']) {?>
 								<option selected value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
 "><?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomvillage'];?>
 </option>
-							<?php }?>
-							<?php if ($_smarty_tpl->tpl_vars['idlaastvillageinclient']->value != $_smarty_tpl->tpl_vars['ligne']->value['idvillage']) {?>
+                            <?php }?>
+                            <?php if ($_smarty_tpl->tpl_vars['idlaastvillageinclient']->value != $_smarty_tpl->tpl_vars['ligne']->value['idvillage']) {?>
 								<option value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
 "><?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomvillage'];?>
 </option>
-							<?php }?>
+                            <?php }?>
 
-						<?php
+                        <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -95,55 +95,33 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
 				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
 				<tr >
-					<th style="color: white">CODE</th>
+					<th style="color: white">NUMERO</th>
 					<th style="color: white">NOM & PRENOM</th>
-					<th style="color: white">Village</th>
-					<th style="color: white">TEL</th>
-					<th style="color: white">ADRESSE</th>
-					<th style="color: white">Est Abonné</th>
+					<th style="color: white">DATE ABONNEMENT</th>
+					<th style="color: white">Etat</th>
 					<th style="color: white; text-align: center">ACTION</th>
 				</tr>
 				</thead>
 				<tbody id="tbody">
                 <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['clients']->value, 'ligne');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['abonnees']->value, 'ligne');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['ligne']->value) {
 ?>
 					<tr>
 						<td id="id<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" >CLI-<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+" > ABN-<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 </td>
 						<td id="nom<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 " >  <?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomcomplet'];?>
 </td>
 						<td id="village<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['village']['nomvillage'];?>
-</td>
-						<td id="tel<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['tel'];?>
-</td>
-						<td id="adresse<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['adresse'];?>
+" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomcomplet'];?>
 </td>
 						<td id="etat<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" >
-							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['estabonne'] == "0") {?>
-								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    padding: 9px" >NON</label>
-							<?php }?>
-							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['estabonne'] == "1") {?>
-								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-    padding: 9px">OUI</label>
-							<?php }?>
-						</td>
+" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['etat_client'];?>
+</td>
 						<td style="text-align: center">
-							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-"
-									onclick="showAddAbonnement(this)"
-									data-toggle="modal" data-target="#addAbonClient">
-								<i class="fa fa-cog"> Abonnement</i>
-							</button>
 							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 "
 									onclick="showEditClient(this)"
@@ -175,7 +153,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
 
-	<!-- ADD client-->
+	<!-- ADD ABONNEMENT-->
 	<div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -191,14 +169,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						<div class="form-group">
 							<label for="nomclientAdd" class="control-label">Nom Complete:</label>
 							<input type="text" class="form-control" id="nomclientAdd" name="nomclientAdd" required ">
-						</div>
-						<div class="form-group">
-							<label for="telclientAdd" class="control-label">Téléphone:</label>
-							<input type="text" class="form-control" id="telclientAdd" name="telclientAdd" required ">
-						</div>
-						<div class="form-group">
-							<label for="adresseclientAdd" class="control-label">Adresse:</label>
-							<input type="text" class="form-control" id="adresseclientAdd" name="adresseclientAdd" required ">
 						</div>
 						<div class="form-group">
 							<label for="villageClientAdd" class="control-label">Village:</label>
@@ -242,14 +212,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 							<input  type="hidden" id="idclientEdit" name="idclientEdit" required ">
 						</div>
 						<div class="form-group">
-							<label for="telclientEdit" class="control-label">Téléphone:</label>
-							<input type="text" class="form-control" id="telclientEdit" name="telclientEdit" required ">
-						</div>
-						<div class="form-group">
-							<label for="adresseclientEdit" class="control-label">Adresse:</label>
-							<input type="text" class="form-control" id="adresseclientEdit" name="adresseclientEdit" required ">
-						</div>
-						<div class="form-group">
 							<label for="villageClientAdd" class="control-label">Village:</label>
 							<select class="form-control" id="villageClientEdit" name="villageClientEdit" required>
 							</select>
@@ -273,66 +235,37 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 	</div>
 
 
-	<!-- ADD ABONNEMENT-->
-	<div class="modal fade" id="addAbonClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<!-- show chef de village -->
+	<div class="modal fade" id="showChefVillagePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="background: rgba(0,0,0,0.8)">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<h4 class="modal-title text-center">ABONNEMENT CLIENT</h4>
-
 				<div class="modal-body">
-
-					<form id="fmrAddAbonn">
-
-						<h5 style="color: black;margin-bottom: 10px">Client &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <div style="color: blue;">Numero Abonnment: &nbsp;&nbsp;&nbsp;&nbsp;<span id="numAbon" style="color:red"></span></div></h5>
-						<div class="form-group">
-							<label for="nomclientabonnee" class="control-label">Nom Client:</label>
-							<input type="text" readonly="readonly" class="form-control" id="nomclientabonnee" name="nomclientabonnee" />
-							<input type="hidden" class="form-control" id="idclientabonnee" name="idclientabonnee" />
-						</div>
-						<div class="form-group">
-							<label for="dateAbonement" class="control-label">Date:</label>
-							<input type="date" name="dateAbonement" id="dateAbonement" required/>
-						</div>
-						<div class="form-group">
-							<label for="DescriptionAbon" class="control-label">Description:</label>
-							<textarea rows="5" class="form-control" id="DescriptionAbon" name="DescriptionAbon" required>
-							</textarea>
-							<input type="hidden" name="idAbonement" id="idAbonement" value="">
-						</div>
-
-						<div class="text-center" style="margin-bottom: 25px">
-							<button type="submit" class="btn btn-primary" id="btnAbonPopup">Ajouter</button>
-						</div>
-					</form>
+					<h4 class="modal-title text-center" id="textShowChefVillage"> </h4>
+					<div style="text-align: center">Est le chef du village </div>
 				</div>
 
 			</div>
 		</div>
 	</div>
 
-
-
 <?php
 }
 }
 /* {/block 'body'} */
 /* {block "js"} */
-class Block_21451105005b2535524ebab8_00345074 extends Smarty_Internal_Block
+class Block_16334901495b23e0b97385e7_89784335 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js' => 
   array (
-    0 => 'Block_21451105005b2535524ebab8_00345074',
+    0 => 'Block_16334901495b23e0b97385e7_89784335',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 	<?php echo '<script'; ?>
- src="/public/js/client.js"><?php echo '</script'; ?>
+ src="/public/js/abonnement.js"><?php echo '</script'; ?>
 >
 <?php
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-5, created on 2018-06-16 18:05:38
-  from '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/client/index.tpl' */
+/* Smarty version 3.1.33-dev-5, created on 2018-06-16 21:11:49
+  from '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/compteur/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-5',
-  'unifunc' => 'content_5b2535524ee958_07360340',
+  'unifunc' => 'content_5b2560f56b9570_02641235',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '2f72662c1749bd675fdfd95d36bfdd69d43388cc' => 
+    'd3f4831afeaa05d16a228a29d3f5b74f2772fe01' => 
     array (
-      0 => '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/client/index.tpl',
-      1 => 1529165136,
+      0 => '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/compteur/index.tpl',
+      1 => 1529176305,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b2535524ee958_07360340 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b2560f56b9570_02641235 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21349569945b2535524126e4_59254831', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18295847375b2560f55eec70_42396654', 'body');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21451105005b2535524ebab8_00345074', "js");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9810296755b2560f56b6f16_91359310', "js");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, '../layout/Main.tpl');
 }
 /* {block 'body'} */
-class Block_21349569945b2535524126e4_59254831 extends Smarty_Internal_Block
+class Block_18295847375b2560f55eec70_42396654 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_21349569945b2535524126e4_59254831',
+    0 => 'Block_18295847375b2560f55eec70_42396654',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -50,10 +50,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 
-			<button class="btn btn-success" data-toggle="modal" data-target="#addClient"><i class="fa fa-plus"> Client</i></button>
 			<div class="row">
 				<div class="col-sm-3 " style="position: relative;top:0">
-					<input class="form-control pull-right" type="text" placeholder="Rechercher" id="searchClient"  />
+					<input class="form-control pull-right" type="text" placeholder="Rechercher" id="searchCompteur"  />
 					<i class="fa fa-search" style="position: absolute;font-size: 20px;top: 5px;right: 14px;height: 79%;" ></i>
 				</div>
 				<div class="col-sm-3 "  style="position: relative;top:0">
@@ -95,12 +94,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
 				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
 				<tr >
-					<th style="color: white">CODE</th>
-					<th style="color: white">NOM & PRENOM</th>
-					<th style="color: white">Village</th>
+					<th style="color: white">CODE CMPT</th>
+					<th style="color: white">CODE ABN</th>
+					<th style="color: white">PROPRIETAIRE</th>
+					<th style="color: white">VILLAGE</th>
 					<th style="color: white">TEL</th>
-					<th style="color: white">ADRESSE</th>
-					<th style="color: white">Est Abonné</th>
+					<th style="color: white">EST COUPÉ</th>
 					<th style="color: white; text-align: center">ACTION</th>
 				</tr>
 				</thead>
@@ -111,49 +110,40 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['ligne']->value) {
 ?>
 					<tr>
-						<td id="id<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" >CLI-<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+						<td id="numc<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+" > CMPT- <?php echo $_smarty_tpl->tpl_vars['ligne']->value['compteur']['numerocompteur'];?>
+</td>
+						<td id="numa<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+" > ABN- <?php echo $_smarty_tpl->tpl_vars['ligne']->value['abonnement']['numero'];?>
 </td>
 						<td id="nom<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" >  <?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomcomplet'];?>
+" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomcomplet'];?>
 </td>
-						<td id="village<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+						<td id="villa<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 " > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['village']['nomvillage'];?>
 </td>
 						<td id="tel<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 " > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['tel'];?>
 </td>
-						<td id="adresse<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['adresse'];?>
-</td>
 						<td id="etat<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
 " >
-							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['estabonne'] == "0") {?>
-								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['compteur']['escoupe']+'' == 0) {?>
+								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px" >NON</label>
 							<?php }?>
-							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['estabonne'] == "1") {?>
-								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+							<?php if ($_smarty_tpl->tpl_vars['ligne']->value['compteur']['escoupe']+'' == 1) {?>
+								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px">OUI</label>
 							<?php }?>
 						</td>
 						<td style="text-align: center">
-							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
+							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['compteur']['idcompteur'];?>
 "
-									onclick="showAddAbonnement(this)"
-									data-toggle="modal" data-target="#addAbonClient">
-								<i class="fa fa-cog"> Abonnement</i>
+									onclick="showAddRelever(this)"
+									data-toggle="modal" data-target="#addRelever">
+								<i class="fa fa-plus"> Relevé</i>
 							</button>
-							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-"
-									onclick="showEditClient(this)"
-									data-toggle="modal" data-target="#editClient">
-								<i class="fa fa-edit"> Edit</i>
-							</button>
-							<button class="btn btn-warning" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idClient'];?>
-" onclick="DelClient(this)">
-								<i class="fa fa-trash"> Del</i>
-							</button>
+
 
 						</td>
 					</tr>
@@ -175,42 +165,49 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
 
-	<!-- ADD client-->
-	<div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<!-- ADD RELEVER-->
+	<div class="modal fade" id="addRelever" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				</div>
-				<h4 class="modal-title text-center">AJOUT CLIENT</h4>
+				<h4 class="modal-title text-center">AJOUT REVELER DU MOI</h4>
 
 				<div class="modal-body">
-					<form id="fmrAddclient">
+					<form id="fmraddRelever">
 
-						<h5 style="color: black;margin-bottom: 10px">Client</h5>
+						<h5 style="color: black;margin-bottom: 10px">Compteur</h5>
 						<div class="form-group">
-							<label for="nomclientAdd" class="control-label">Nom Complete:</label>
-							<input type="text" class="form-control" id="nomclientAdd" name="nomclientAdd" required ">
+							<label for="cccmpt" class="control-label">Consommation cummulé en m3:</label>
+							<input readonly="readonly" type="text" class="form-control" id="cccmpt" name="cccmpt" required ">
 						</div>
 						<div class="form-group">
-							<label for="telclientAdd" class="control-label">Téléphone:</label>
-							<input type="text" class="form-control" id="telclientAdd" name="telclientAdd" required ">
+							<label for="cMensuelcmpt" class="control-label">Mettre consommation mois courant en m3:</label>
+							<input type="text" class="form-control" id="cMensuelcmpt" name="cMensuelcmpt" required ">
+							<input type="hidden" class="form-control" id="idCompteur" name="idCompteur" required ">
 						</div>
+
 						<div class="form-group">
-							<label for="adresseclientAdd" class="control-label">Adresse:</label>
-							<input type="text" class="form-control" id="adresseclientAdd" name="adresseclientAdd" required ">
-						</div>
-						<div class="form-group">
-							<label for="villageClientAdd" class="control-label">Village:</label>
-							<select class="form-control" id="villageClientAdd" name="villageClientAdd" required>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="etatclientAdd" class="control-label">Etat:</label>
-							<select class="form-control" id="etatclientAdd" name="etatclientAdd" required>
+							<label for="moisrelever" class="control-label">Mois:</label>
+							<select class="form-control" id="moisrelever" name="moisrelever" required>
 								<option value="" selected hidden>...</option>
-								<option value="1">Activer</option>
-								<option value="0">Desactiver</option>
+								<option value="1">Janvier</option>
+								<option value="2">Février</option>
+								<option value="3">Mars</option>
+								<option value="4">Avril</option>
+								<option value="5">Mai</option>
+								<option value="6">Juin</option>
+								<option value="7">Juillet</option>
+								<option value="8">Aout</option>
+								<option value="9">Septembre</option>
+								<option value="10">Octobre</option>
+								<option value="11">Novenmbre</option>
+								<option value="12">Décembre</option>
+							</select>
+							<label for="anneerelever" class="control-label">Année:</label>
+							<select class="form-control" id="anneerelever" name="anneerelever" required>
+
 							</select>
 						</div>
 						<div class="text-center" style="margin-bottom: 25px">
@@ -320,19 +317,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block 'body'} */
 /* {block "js"} */
-class Block_21451105005b2535524ebab8_00345074 extends Smarty_Internal_Block
+class Block_9810296755b2560f56b6f16_91359310 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js' => 
   array (
-    0 => 'Block_21451105005b2535524ebab8_00345074',
+    0 => 'Block_9810296755b2560f56b6f16_91359310',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 	<?php echo '<script'; ?>
- src="/public/js/client.js"><?php echo '</script'; ?>
+ src="/public/js/compteur.js"><?php echo '</script'; ?>
 >
 <?php
 }

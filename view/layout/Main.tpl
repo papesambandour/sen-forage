@@ -39,14 +39,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/client">Client</a>
             </li>
+           {* <li class="nav-item active">
+                <a class="nav-link" href="/abonnement">Abonnement</a>
+            </li>*}
             <li class="nav-item active">
-                <a class="nav-link" href="#">Compteur</a>
+                <a class="nav-link" href="/compteur">Compteur</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">Abonnement</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Facture</a>
+                <a class="nav-link" href="/facture">Facture</a>
             </li>
         </ul>
         <span class="navbar-text">
@@ -70,114 +70,6 @@
 </div>
 
 
-
-<!-- ADD ETUD-->
-<div class="modal fade" id="addEtut" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <h4 class="modal-title text-center">Ajout Etudiant</h4>
-            <div class="modal-body">
-                <form id="formAddEtud">
-                    <div class="form-group">
-                        <label for="matEtAdd" class="control-label">Matricule:</label>
-                        <input type="text" class="form-control" id="matEtAdd" required="required" pattern="^MAT([0-9])+$" readonly="readonly">
-                    </div>
-                    <div class="form-group">
-                        <label for="nomEtAdd" class="control-label">Nom:</label>
-                        <input type="text" class="form-control" id="nomEtAdd" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="prenomEtAdd" class="control-label">Prenom:</label>
-                        <input type="text" class="form-control" id="prenomEtAdd" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="classEtAdd" class="control-label">Classe:</label>
-                        <input type="text" class="form-control" id="classEtAdd" required="required">
-                    </div>
-                    <div class="text-center" style="margin-bottom: 25px">
-                        <button type="submit" class="btn btn-primary" id="btnAddEtu">Enregistrer</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- ADD Note-->
-<div class="modal fade" id="addNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="height: auto !important;">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <h4 class="modal-title text-center">Ajout Note</h4>
-            <div class="modal-body" style="max-height: 500px; overflow: auto">
-                <form id="frmAddNote">
-                    <div class="form-group">
-                        <label for="valNote" class="control-label">Valeur:</label>
-                        <input type="number"  step=0.01 class="form-control" min="0" max="20" id="valNote" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="anneNote" class="control-label">Annee:</label>
-                        <input type="text" class="form-control" id="anneNote" required pattern="^([0-9])+$">
-                    </div>
-                    <div class="form-group">
-                        <label for="semNote" class="control-label">Semestre:</label>
-                        <input type="number" class="form-control" id="semNote" min="1" max="2" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="matierNote" class="control-label">Matiere:</label>
-                        <input type="text" class="form-control" id="matierNote" required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="matierNote" class="control-label">Etudiant</label>
-                        <select class="form-control" id="idEtudiant" required="required">
-
-                        </select>
-                    </div>
-
-                    <div class="text-center" style="margin-bottom: 25px">
-                        <button type="submit" class="btn btn-primary" id="submitNote">Enregistrer</button>
-                    </div>
-
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- SHOW Note-->
-<div class="modal fade" id="showNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document" >
-        <div class="modal-content" style="max-height: 400px;overflow:auto">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <h4 class="modal-title text-center">Tableau de notes</h4>
-            <label style="font-size: 11px;text-align: center">Double click pour editer - Entrer pour enregistrer</label>
-            <div class="modal-body">
-                <table class="table table-hover table-bordered" id="TabNote">
-                    <thead>
-                    <tr>
-                        <td>Valeur</td>
-                        <td>Matiere</td>
-                        <td>Semestre</td>
-                        <td>Année</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-</div>
 <!-- show aplication -->
 <div class="modal fade" id="tecnologi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="background: rgba(0,0,0,0.8)">
     <div class="modal-dialog" role="document">
@@ -192,6 +84,7 @@
 
         </div>
     </div>
+</div>
 
 
 <script src="/public/jquery/dist/jquery.js"></script>

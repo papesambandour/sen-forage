@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-5, created on 2018-06-14 16:58:06
+/* Smarty version 3.1.33-dev-5, created on 2018-06-15 23:12:38
   from '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/village/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-5',
-  'unifunc' => 'content_5b22827eac8564_33805379',
+  'unifunc' => 'content_5b242bc6ae18f0_52260919',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '631615aa46475d89578b2ee262342ce013c35865' => 
     array (
       0 => '/Users/macintosh/Documents/Projet/php/Projet DITI4 PHP/GestionForage/view/village/index.tpl',
-      1 => 1528987225,
+      1 => 1529097157,
       2 => 'file',
     ),
   ),
@@ -20,27 +20,27 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b22827eac8564_33805379 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b242bc6ae18f0_52260919 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6702912595b22827ea67e32_70535318', 'body');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18321530965b242bc6a7cce9_05082554', 'body');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15584002935b22827eac5d26_71471235', "js");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1880565265b242bc6adf036_78644864', "js");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, '../layout/Main.tpl');
 }
 /* {block 'body'} */
-class Block_6702912595b22827ea67e32_70535318 extends Smarty_Internal_Block
+class Block_18321530965b242bc6a7cce9_05082554 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'body' => 
   array (
-    0 => 'Block_6702912595b22827ea67e32_70535318',
+    0 => 'Block_18321530965b242bc6a7cce9_05082554',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -63,9 +63,9 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
 				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
 				<tr >
-					<th style="color: white">ID</th>
+					<th style="color: white">CODE</th>
 					<th style="color: white">NOM VILLAGE</th>
-					<th style="color: white">ETAT</th>
+					<th style="color: white">POPULATION</th>
 					<th style="color: white; text-align: center">ACTION</th>
 				</tr>
 				</thead>
@@ -77,13 +77,13 @@ foreach ($_from as $_smarty_tpl->tpl_vars['ligne']->value) {
 ?>
 					<tr>
 						<td id="id<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
+" > VILG-<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
 </td>
 						<td id="nom<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
 " >  <?php echo $_smarty_tpl->tpl_vars['ligne']->value['nomvillage'];?>
 </td>
 						<td id="eta<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
-" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['etat_village'];?>
+" > <?php echo $_smarty_tpl->tpl_vars['ligne']->value['population'];?>
 </td>
 						<td style="text-align: center">
 							<button class="btn btn-success" value="<?php echo $_smarty_tpl->tpl_vars['ligne']->value['idvillage'];?>
@@ -135,7 +135,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				<div class="modal-body">
 					<form id="fmrAddVillage">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<h5 style="color: black;margin-bottom: 10px">Village</h5>
 								<div class="form-group">
 									<label for="nomvillageAdd" class="control-label">Nom:</label>
@@ -151,11 +151,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 								</div>
 							</div>
 
-							<div class="col-sm-6">
+							<div class="col-sm-12">
 								<h5 style="color:black;margin-bottom: 10px">Chef de village</h5>
 								<div class="form-group">
 									<label for="nomchefVillageAdd" class="control-label">Nom Complete:</label>
 									<input type="text" class="form-control" id="nomchefVillageAdd" name="nomchefVillageAdd" required ">
+								</div>
+								<div class="form-group">
+									<label for="telchefVillageAdd" class="control-label">Téléphone:</label>
+									<input type="tel" class="form-control" id="telchefVillageAdd" name="telchefVillageAdd" required ">
+								</div>
+								<div class="form-group">
+									<label for="addresschefVillageAdd" class="control-label">Adresse:</label>
+									<input type="text" class="form-control" id="addresschefVillageAdd" name="addresschefVillageAdd" required ">
 								</div>
 								<div class="form-group">
 									<label for="etatvillage" class="control-label">Etat:</label>
@@ -236,12 +244,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block 'body'} */
 /* {block "js"} */
-class Block_15584002935b22827eac5d26_71471235 extends Smarty_Internal_Block
+class Block_1880565265b242bc6adf036_78644864 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'js' => 
   array (
-    0 => 'Block_15584002935b22827eac5d26_71471235',
+    0 => 'Block_1880565265b242bc6adf036_78644864',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

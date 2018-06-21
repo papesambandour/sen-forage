@@ -18,6 +18,10 @@ namespace Model;
         //protected $primaryKey = 'idcompteur';
         public $timestamps = false;//pour igonrer les
         const LAST_ID_VILLAGE_IN_CLIENT ="LAST_ID_VILLAGE_IN_CLIENT";
+        const NUMERO_COMPTEUR ="NUMERO_COMPTEUR";
+        const NUMERO_FACTURE ="NUMERO_FACTURE";
+        const NUMERO_ABONNEMENT ="NUMERO_ABONNEMENT";
+        const PRIX_UNITAIRE_LITRE ="PRIX_UNITAIRE_LITRE";
         public static function get($label)
         {
             $conf = Config::where("label","=",$label)->get()[0];

@@ -10,23 +10,18 @@
   ===================================================*/
     //class
 namespace Controller ;
-    use Illuminate\Support\Facades\Request;
-    use Libs\helper\Utils;
     use Libs\system\Controller;
-    use Libs\system\DB;
-    use Model\Client;
-    use Model\Config;
-    use Model\Village;
 
-    class VillageCtrl extends Controller {
+    class Cron extends Controller {
+
         public function __construct(){
             parent::__construct();
         }
-        public function lastidvillageinclient($value)
-        {
-            Config::set(Config::LAST_ID_VILLAGE_IN_CLIENT,$value);
+        //methode ou url
+        public function index(){
+            return $this->view->load("accueil/index");
+			
         }
-
-
+		
     }
 ?>

@@ -38,21 +38,39 @@
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
 				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
 				<tr >
-					<th style="color: white">ID</th>
+					<th style="color: white">CODE</th>
 					<th style="color: white">NOM & PRENOM</th>
 					<th style="color: white">Village</th>
-					<th style="color: white">Etat</th>
+					<th style="color: white">TEL</th>
+					<th style="color: white">ADRESSE</th>
+					<th style="color: white">Est Abonné</th>
 					<th style="color: white; text-align: center">ACTION</th>
 				</tr>
 				</thead>
 				<tbody id="tbody">
                 {foreach from=$clients item=ligne}
 					<tr>
-						<td id="id{$ligne.idClient}" > {$ligne.idClient}</td>
+						<td id="id{$ligne.idClient}" >CLI-{$ligne.idClient}</td>
 						<td id="nom{$ligne.idClient}" >  {$ligne.nomcomplet}</td>
 						<td id="village{$ligne.idClient}" > {$ligne.village.nomvillage}</td>
-						<td id="etat{$ligne.idClient}" > {$ligne.etat_client}</td>
+						<td id="tel{$ligne.idClient}" > {$ligne.tel}</td>
+						<td id="adresse{$ligne.idClient}" > {$ligne.adresse}</td>
+						<td id="etat{$ligne.idClient}" >
+							{if $ligne.estabonne == "0"}
+								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    padding: 9px" >NON</label>
+							{/if}
+							{if $ligne.estabonne == "1"}
+								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    padding: 9px">OUI</label>
+							{/if}
+						</td>
 						<td style="text-align: center">
+							<button class="btn btn-success" value="{$ligne.idClient}"
+									onclick="showAddAbonnement(this)"
+									data-toggle="modal" data-target="#addAbonClient">
+								<i class="fa fa-cog"> Abonnement</i>
+							</button>
 							<button class="btn btn-success" value="{$ligne.idClient}"
 									onclick="showEditClient(this)"
 									data-toggle="modal" data-target="#editClient">
@@ -97,6 +115,14 @@
 							<input type="text" class="form-control" id="nomclientAdd" name="nomclientAdd" required ">
 						</div>
 						<div class="form-group">
+							<label for="telclientAdd" class="control-label">Téléphone:</label>
+							<input type="text" class="form-control" id="telclientAdd" name="telclientAdd" required ">
+						</div>
+						<div class="form-group">
+							<label for="adresseclientAdd" class="control-label">Adresse:</label>
+							<input type="text" class="form-control" id="adresseclientAdd" name="adresseclientAdd" required ">
+						</div>
+						<div class="form-group">
 							<label for="villageClientAdd" class="control-label">Village:</label>
 							<select class="form-control" id="villageClientAdd" name="villageClientAdd" required>
 							</select>
@@ -138,6 +164,14 @@
 							<input  type="hidden" id="idclientEdit" name="idclientEdit" required ">
 						</div>
 						<div class="form-group">
+							<label for="telclientEdit" class="control-label">Téléphone:</label>
+							<input type="text" class="form-control" id="telclientEdit" name="telclientEdit" required ">
+						</div>
+						<div class="form-group">
+							<label for="adresseclientEdit" class="control-label">Adresse:</label>
+							<input type="text" class="form-control" id="adresseclientEdit" name="adresseclientEdit" required ">
+						</div>
+						<div class="form-group">
 							<label for="villageClientAdd" class="control-label">Village:</label>
 							<select class="form-control" id="villageClientEdit" name="villageClientEdit" required>
 							</select>
@@ -161,18 +195,47 @@
 	</div>
 
 
-	<!-- show chef de village -->
-	<div class="modal fade" id="showChefVillagePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="background: rgba(0,0,0,0.8)">
+	<!-- ADD ABONNEMENT-->
+	<div class="modal fade" id="addAbonClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<h4 class="modal-title text-center">ABONNEMENT CLIENT</h4>
+
 				<div class="modal-body">
-					<h4 class="modal-title text-center" id="textShowChefVillage"> </h4>
-					<div style="text-align: center">Est le chef du village </div>
+
+					<form id="fmrAddAbonn">
+
+						<h5 style="color: black;margin-bottom: 10px">Client &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <div style="color: blue;">Numero Abonnment: &nbsp;&nbsp;&nbsp;&nbsp;<span id="numAbon" style="color:red"></span></div></h5>
+						<div class="form-group">
+							<label for="nomclientabonnee" class="control-label">Nom Client:</label>
+							<input type="text" readonly="readonly" class="form-control" id="nomclientabonnee" name="nomclientabonnee" />
+							<input type="hidden" class="form-control" id="idclientabonnee" name="idclientabonnee" />
+						</div>
+						<div class="form-group">
+							<label for="dateAbonement" class="control-label">Date:</label>
+							<input type="date" name="dateAbonement" id="dateAbonement" required/>
+						</div>
+						<div class="form-group">
+							<label for="DescriptionAbon" class="control-label">Description:</label>
+							<textarea rows="5" class="form-control" id="DescriptionAbon" name="DescriptionAbon" required>
+							</textarea>
+							<input type="hidden" name="idAbonement" id="idAbonement" value="">
+						</div>
+
+						<div class="text-center" style="margin-bottom: 25px">
+							<button type="submit" class="btn btn-primary" id="btnAbonPopup">Ajouter</button>
+						</div>
+					</form>
 				</div>
 
 			</div>
 		</div>
 	</div>
+
+
 
 {/block}
 

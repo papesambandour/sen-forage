@@ -10,18 +10,20 @@
   ===================================================*/
     //class
 namespace Controller ;
+    use Illuminate\Support\Facades\Request;
+    use Libs\helper\Utils;
     use Libs\system\Controller;
+    use Libs\system\DB;
+    use Model\Client;
+    use Model\Config;
+    use Model\Village;
 
-    class ReleveCtrl extends Controller {
-
+    class ConfigCtrl extends Controller {
         public function __construct(){
             parent::__construct();
         }
-        //methode ou url
-        public function index(){
-            return $this->view->load("accueil/index");
-			
-        }
-		
+
+
+
     }
 ?>

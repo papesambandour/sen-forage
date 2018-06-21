@@ -24,6 +24,10 @@ namespace Controller ;
         //methode ou url
         public function index(){
             $villages = Village::all();
+            foreach ($villages as $village)
+            {
+                $village->population = Client::where("id_village","=",$village->idvillage)->count();
+            }
             return $this->view->load("village/index",compact('villages'));
 			
         }
@@ -41,6 +45,8 @@ namespace Controller ;
             $creditialC["nomcomplet"] = Utils::get("nomchefVillageAdd");
             $creditialC["etat_client"] = Utils::get("etatchefVillageAdd");
             $creditialC["id_village"] = $village->idvillage;
+            $creditialC["tel"] = Utils::get("telchefVillageAdd");
+            $creditialC["adresse"] = Utils::get("addresschefVillageAdd");
             $client = Client::create($creditialC);
             $village->chefdevillage_id = $client->idClient ;
             $village->save();
@@ -69,6 +75,10 @@ namespace Controller ;
         public function gets()
         {
            $villages = Village::all();
+            foreach ($villages as $village)
+            {
+                $village->population = Client::where("id_village","=",$village->idvillage)->count();
+            }
            if($villages != null)
            {
                echo json_encode($villages,JSON_PRETTY_PRINT);
@@ -122,6 +132,10 @@ namespace Controller ;
         public function search()
         {
             $villages = Village::where("nomvillage","like","%".Utils::get("item")."%")->get();
+            foreach ($villages as $village)
+            {
+                $village->population = Client::where("id_village","=",$village->idvillage)->count();
+            }
             echo json_encode($villages);
         }
 
