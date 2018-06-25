@@ -22,6 +22,8 @@ namespace Model;
         const NUMERO_FACTURE ="NUMERO_FACTURE";
         const NUMERO_ABONNEMENT ="NUMERO_ABONNEMENT";
         const PRIX_UNITAIRE_LITRE ="PRIX_UNITAIRE_LITRE";
+        const MONTH = "MONTH";
+        const YEAR = "YEAR";
         public static function get($label)
         {
             $conf = Config::where("label","=",$label)->get()[0];

@@ -25,6 +25,30 @@ class Utils
             return "";
         }
     }
+    public static function getMonth(){
+        return [
+            'Janvier',
+            'Février',
+            'Mars',
+            'Avril',
+            'Mai',
+            'Juin',
+            'Juillet',
+            'Aout',
+            'Septembre',
+            'Octobre',
+            'Novenmbre',
+            'Décembre',
+        ];
+    }
+    public static function getYear($limite = 2016){
+        $annes= array();
+        for($i = (int)(new \DateTime())->format('Y') ; $i > $limite;$i-- )
+        {
+            $annes[] = $i ;
+        }
+        return $annes ;
+    }
     private static function dizaine( $nombre ){
         $dizaine = '';
         switch( $nombre ){

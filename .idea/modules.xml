@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/GestionForage.iml" filepath="$PROJECT_DIR$/.idea/GestionForage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/sen-forage.iml" filepath="$PROJECT_DIR$/.idea/sen-forage.iml" />
     </modules>
   </component>
 </project>

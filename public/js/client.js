@@ -36,7 +36,8 @@ $(function () {
                     $('#addAbonClient').modal('hide');
                     myAlert("Aboonement ajouter avec success","success");
                     cleanabonClien();
-                    $("#etat"+formData.idclientabonnee).html("<label style=\"background: green;color: white;border-radius: 5px\">Abonné</label>");
+                    $("#etat"+formData.idclientabonnee).html("<label style=\"background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
+                        "    padding: 9px\">OUI</label>");
                 }else if(data = 2)
                 {
                     loaderEnd();
@@ -433,6 +434,7 @@ function showAddAbonnement(e) {
 
             $("#nomclientabonnee") .val(dataParsed.nomcomplet);
             $("#idclientabonnee") .val(dataParsed.idClient);
+            $("#codeclientabonnee") .val('CLI-'+dataParsed.idClient);
 
         }).fail(function (err) {
             loaderEnd();
@@ -464,6 +466,7 @@ function cleanabonClien() {
     $("#dateAbonement") .val('');
     $("#DescriptionAbon") .val('');
     $("#idAbonement") .val('');
+    $("#codeclientabonnee") .val('');
 
 }
 

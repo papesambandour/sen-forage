@@ -20,3 +20,48 @@ body{
     cursor: pointer;
     text-shadow:3px 1px 5px 5px white; ;
 }
+
+
+.etatTrans
+{
+
+    border: solid 1px deepskyblue;
+    width: 40px;
+    height: 25px;
+    z-index: 12;
+    padding: 0;
+    overflow: hidden;
+    margin: 0;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.etatTrans input
+{
+    display: none;
+}
+
+.textNon{
+    width: 15px; height: 100%;display: inline-block;margin: 0;padding: 0;position: absolute;left: 0;top:0;
+}
+
+
+.banbeGris{
+    width: 10px;
+    background: gray;
+    height: 100%;
+    display: inline-block;
+    margin: 0;position: absolute;
+    padding: 0;left: 40px;top:0;
+    border-radius: 5px;
+}
+
+.banbeBlu{
+    width: 10px;
+    background: deepskyblue;
+    height: 100%;
+    display: inline-block;
+    margin: 0;position: absolute;
+    padding: 0;left: 0;top:0;
+    border-radius: 5px;
+}

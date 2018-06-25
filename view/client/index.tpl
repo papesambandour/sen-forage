@@ -215,6 +215,11 @@
 							<input type="hidden" class="form-control" id="idclientabonnee" name="idclientabonnee" />
 						</div>
 						<div class="form-group">
+							<label for="codeclientabonnee" class="control-label">Code Client:</label>
+							<input type="text" readonly="readonly" class="form-control" id="codeclientabonnee" name="codeclientabonnee" />
+
+						</div>
+						<div class="form-group">
 							<label for="dateAbonement" class="control-label">Date:</label>
 							<input type="date" name="dateAbonement" id="dateAbonement" required/>
 						</div>

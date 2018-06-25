@@ -55,11 +55,11 @@
 						<td id="villa{$ligne.idClient}" > {$ligne.village.nomvillage}</td>
 						<td id="tel{$ligne.idClient}" > {$ligne.tel}</td>
 						<td id="etat{$ligne.idClient}" >
-							{if $ligne.compteur.escoupe +"" == 0}
+							{if $ligne.compteur.escoupe  == 0}
 								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px" >NON</label>
 							{/if}
-							{if $ligne.compteur.escoupe +"" == 1}
+							{if $ligne.compteur.escoupe  == 1}
 								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px">OUI</label>
 							{/if}
@@ -115,19 +115,8 @@
 						<div class="form-group">
 							<label for="moisrelever" class="control-label">Mois:</label>
 							<select class="form-control" id="moisrelever" name="moisrelever" required>
-								<option value="" selected hidden>...</option>
-								<option value="1">Janvier</option>
-								<option value="2">Février</option>
-								<option value="3">Mars</option>
-								<option value="4">Avril</option>
-								<option value="5">Mai</option>
-								<option value="6">Juin</option>
-								<option value="7">Juillet</option>
-								<option value="8">Aout</option>
-								<option value="9">Septembre</option>
-								<option value="10">Octobre</option>
-								<option value="11">Novenmbre</option>
-								<option value="12">Décembre</option>
+
+
 							</select>
 							<label for="anneerelever" class="control-label">Année:</label>
 							<select class="form-control" id="anneerelever" name="anneerelever" required>

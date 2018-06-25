@@ -1,1 +1,4 @@
 /vendor
+/.idea
+/templates_c
+/config/DataBase.php
