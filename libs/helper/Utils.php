@@ -41,6 +41,10 @@ class Utils
             'Décembre',
         ];
     }
+    public static function getMonthByNum($num)
+    {
+       return self::getMonth()[$num -1];
+    }
     public static function getYear($limite = 2016){
         $annes= array();
         for($i = (int)(new \DateTime())->format('Y') ; $i > $limite;$i-- )

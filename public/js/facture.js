@@ -178,6 +178,15 @@ $(function () {
     ///VILLAGE END
 });
 
+function exporter(e) {
+    var idclient = $(e).val();
+    var idFacture = $(e).attr('data-idc');
+    //alert("id facture : "+ idFacture +" | id client : "+ idclient)
+    var page = "facture/export?idc="+idclient+"&idf="+idFacture;
+    window.location = page;
+
+}
+
 
 
 

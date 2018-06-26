@@ -69,6 +69,7 @@
 					<th style="color: white">TEL</th>
 					<th style="color: white">ADRESSE</th>
 					<th style="color: white">A Payée</th>
+					<th style="color: white">Exporter</th>
 				</tr>
 				</thead>
 				<tbody id="tbody">
@@ -124,6 +125,9 @@
 
 
 							{/if}
+						</td>
+						<td>
+							<button class="btn btn-primary btn-sm" value="{$ligne.facture.idfacture}" data-idc="{$ligne.idClient}" onclick="exporter(this)">Exporter</button>
 						</td>
 
 					</tr>
