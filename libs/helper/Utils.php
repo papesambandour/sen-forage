@@ -95,7 +95,7 @@ class Utils
         return $unite;
     }
 
-    public static function numberToLetter( $nombre ){
+    private static function numberToLetter( $nombre ){
         $n = $quotient = $reste = $nb = null;
         $numberToLetter='';
         $rightPortion = @(explode(".", strval($nombre))[1]) ?: '';
@@ -222,11 +222,6 @@ class Utils
     }
 
     public static function numberToLetterConversion($nombre = 0) {
-
-
-
-
-
 
         return ucfirst(strtolower(self::numberToLetter(floatval($nombre ?: 0))) ?: '');
     }

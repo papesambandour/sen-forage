@@ -26,7 +26,7 @@ body{
 {
 
     border: solid 1px deepskyblue;
-    width: 40px;
+    width: 49px;
     height: 25px;
     z-index: 12;
     padding: 0;
@@ -45,6 +45,11 @@ body{
     width: 15px; height: 100%;display: inline-block;margin: 0;padding: 0;position: absolute;left: 0;top:0;
 }
 
+.textOui{
+    left: 13px;
+    position: relative;
+}
+
 
 .banbeGris{
     width: 10px;
@@ -52,7 +57,7 @@ body{
     height: 100%;
     display: inline-block;
     margin: 0;position: absolute;
-    padding: 0;left: 40px;top:0;
+    padding: 0;left: 37px;top:0;
     border-radius: 5px;
 }
 

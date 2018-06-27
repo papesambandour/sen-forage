@@ -17,9 +17,8 @@ $(function () {
         {
             if(confirm("VOULEZ CONFIRMER L'ANNULLEMENT DU PAYEMENT DE LA FACTURE ")) {
                 loaderStart();
-                $.get('facture/update', {
-                    statepayed: 0,
-                    idGain: idGain
+                $.get('facture/update/'+idFcture, {
+                    state: 0,
                 }).done(function (resultChangeSate) {
                     loaderEnd();
                     console.log(resultChangeSate);
@@ -35,17 +34,16 @@ $(function () {
         {
             if(confirm("VOULEZ CONFIRMER LE PAYEMENT DU CLIENT ")) {
                 loaderStart();
-                $.get('/facture/update', {
-                    statepayed: 1,
-                    idGain: idGain
+                $.get('/facture/update/'+idFcture, {
+                    state: 1,
                 }).done(function (resultChangeSate) {
-                    endLoad();
+                    loaderEnd();
                     console.log(resultChangeSate);
-                    var date = new Date();
                     myThis.children('input').attr("checked", "checked");
                     myThis.children('.oui').css('display', 'block');
                     myThis.children('.non').css('display', 'none');
                 }).fail(function (jqXHR, exception) {
+                    loaderEnd()
                     alert("Verifier votre connexion");
                 });
             }
@@ -164,7 +162,58 @@ $(function () {
                     var estcoupee = dataParsed[i].compteur.escoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                         "    padding: 9px\">OUI</label>" : "<label style=\"background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                         "    padding: 9px\" >NON</label>";
-                    html +=''
+                    html +='<tr>\n' +
+                        '\t\t\t\t\t\t<td id="id'+dataParsed[i].idClient+'" >FACT-'+dataParsed[i].facture.idfacture+'</td>\n' +
+                        '\t\t\t\t\t\t<td id="nom'+dataParsed[i].idClient+'" > '+dataParsed[i].nomcomplet+'</td>\n' +
+                        '\t\t\t\t\t\t<td id="tel'+dataParsed[i].idClient+'" > '+dataParsed[i].tel+'</td>\n' +
+                        '\t\t\t\t\t\t<td id="adresse'+dataParsed[i].idClient+'" > '+dataParsed[i].adresse+'</td>\n' +
+                        '\t\t\t\t\t\t<td id="etat{$ligne.idClient}" >\n' +
+                        '\t\t\t\t\t\t\t{if $ligne.facture.payee == "1"}\n' +
+                        '\t\t\t\t\t\t\t\t<div class="etatTrans">\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="oui">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t<div class="banbeBlu">\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t<div class="textOui">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\tOUI\n' +
+                        '\t\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="non" style="display: none">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t<div class="textNon">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\tNON\n' +
+                        '\t\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t<div class="banbeGris">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t\t\t<input  type="checkbox" checked="checked" value="{$ligne.facture.idfacture}">\n' +
+                        '\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t{/if}\n' +
+                        '\t\t\t\t\t\t\t{if $ligne.facture.payee  == "0"}\n' +
+                        '\t\t\t\t\t\t\t<div class="etatTrans">\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t\t<div class="non">\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="textNon">\n' +
+                        '\t\t\t\t\t\t\t\t\t\tNON\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="banbeGris">\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t<div class="oui" style="display: none">\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="banbeBlu">\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t\t<div class="textOui">\n' +
+                        '\t\t\t\t\t\t\t\t\t\tOUI\n' +
+                        '\t\t\t\t\t\t\t\t\t</div>\n' +
+                        '\t\t\t\t\t\t\t\t</div>\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t\t<input  type="checkbox"  value="{$ligne.facture.idfacture}">\n' +
+                        '\t\t\t\t\t\t\t</div>\n' +
+                        '\n' +
+                        '\n' +
+                        '\t\t\t\t\t\t\t{/if}\n' +
+                        '\t\t\t\t\t\t</td>'
                 }
                 $("#tbody").html(html);
 
@@ -179,10 +228,15 @@ $(function () {
 });
 
 function exporter(e) {
-    var idclient = $(e).val();
-    var idFacture = $(e).attr('data-idc');
+    var  idFacture= $(e).val();
+    var idclient = $(e).attr('data-idc');
     //alert("id facture : "+ idFacture +" | id client : "+ idclient)
     var page = "facture/export?idc="+idclient+"&idf="+idFacture;
+    window.location = page;
+
+}
+function exportmonth(e) {
+    var page = "facture/exportmonth";
     window.location = page;
 
 }

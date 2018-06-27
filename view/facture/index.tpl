@@ -4,7 +4,7 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 
-			<button class="btn btn-success" id="exportPdf"><i class="fa fa-plus"> Exporter</i></button>
+			<button class="btn btn-success" id="exportPdf" onclick="exportmonth(this)"><i class="fa fa-plus"> Exporter</i></button>
 			<div class="row">
 				<div class="col-sm-3 " style="position: relative;top:0">
 					<input class="form-control pull-right" type="text" placeholder="Rechercher" id="searchFacture"  />
@@ -66,8 +66,8 @@
 				<tr >
 					<th style="color: white">CODE FACTURE</th>
 					<th style="color: white">NOM & PRENOM</th>
-					<th style="color: white">TEL</th>
-					<th style="color: white">ADRESSE</th>
+					<th style="color: white">PRIX</th>
+					<th style="color: white">CONSOMATION</th>
 					<th style="color: white">A Payée</th>
 					<th style="color: white">Exporter</th>
 				</tr>
