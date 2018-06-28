@@ -24,7 +24,7 @@ $(function () {
                     loaderEnd();
                     $('#addRelever').modal('hide');
                     cleanRevellerAdd();
-                    myAlert("Relever dejat ajouter pour cette mois","warning");
+                    myAlert("Relever mise a jour  avec success","success");
                 }
                 else{
                     loaderEnd();

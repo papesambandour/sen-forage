@@ -10,6 +10,7 @@ function loaderStart() {
 }
 loaderEnd();
 
+
 function myAlert(text, classCss) {
     var hml= "<div style='text-align: center' class=\"alert alert-"+classCss+" alert-dismissible fade show\" role=\"alert\">\n" +
         "                    <span >"+text+"</span>\n" +

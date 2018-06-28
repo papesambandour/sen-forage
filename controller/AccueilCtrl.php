@@ -20,8 +20,8 @@ namespace Controller ;
         }
         //methode ou url
         public function index(){
-			$clients = Client::all();
-            return $this->view->load("accueil/home",compact('clients'));
+
+            return $this->view->load("accueil/home");
 			
         }
 		

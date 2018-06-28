@@ -10,8 +10,8 @@ body{
     display: none;
 }
 .modal-content{
-    border: solid 5px rgba(255, 111, 116, 0.95);
-    color: rgb(238, 110, 115) !important;
+    border: solid 5px rgb(110, 170, 238);
+    color: rgb(110, 170, 238) !important;
 }
 
 #title:hover{

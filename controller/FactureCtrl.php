@@ -199,7 +199,28 @@ namespace Controller ;
             $facturExist = Facture::where("mois","=",Utils::get("moisrelever"))->where("annee","=",Utils::get("anneerelever"))->where("compteur_id","=",Utils::get("idCompteur"))->get();
             if(count($facturExist) > 0)
             {
-                echo 2;
+                $facture = $facturExist[0];
+                if((int)Utils::get("moisrelever") == (int)(new \DateTime())->format('m')) {
+                    DB::beginTransaction();
+                    $compteur = Compteur::find(Utils::get("idCompteur"));
+
+                  //  $facture = new Facture();
+                   // $facture->mois = Utils::get("moisrelever");
+                    //$facture->annee = Utils::get("anneerelever");
+                    $facture->consommation = (float)Utils::get("cMensuelcmpt");
+                    //$facture->prixunitaire = (float)Config::get(Config::PRIX_UNITAIRE_LITRE);
+                    //$facture->compteur_id = $compteur->idcompteur;
+                    $facture->save();
+                    $compteur->consommationc -= $compteur->conso_encours ;
+                    $compteur->consommationc += $facture->consommation;
+                    $compteur->conso_encours = $facture->consommation;
+                    $compteur->consommationl = Utils::numberToLetterConversion($compteur->consommationc);
+                    $compteur->save();
+
+
+                    DB::commit();
+                    echo 2;
+                }
             }
             else
             {

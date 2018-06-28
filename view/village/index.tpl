@@ -15,7 +15,7 @@
 
 		<div class="panel-body">
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
-				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
+				<thead style="background: rgb(110, 170, 238) ; color: white !important;">
 				<tr >
 					<th style="color: white">CODE</th>
 					<th style="color: white">NOM VILLAGE</th>
@@ -54,7 +54,7 @@
 			</table>
 		</div>
 		<div class="panel-footer text-center" >
-			FOOTER
+
 		</div>
 	</div>
 

@@ -12,7 +12,7 @@
 				</div>
 				<div class="col-sm-3 "  style="position: relative;top:0">
 
-					<select name="villageInClient" id="villageInClient" style="width: 100%;background: rgb(238, 110, 115);border: 1px solid white;height: 30px;color: white">
+					<select name="villageInClient" id="villageInClient" style="width: 100%;background: rgb(110, 170, 238);border: 1px solid white;height: 30px;color: white">
                         {if $idlaastvillageinclient == ""}
 							<option selected value="">Tous les village</option>
                         {/if}
@@ -36,7 +36,7 @@
 
 		<div class="panel-body">
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
-				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
+				<thead style="background: rgb(110, 170, 238) ; color: white !important;">
 				<tr >
 					<th style="color: white">CODE</th>
 					<th style="color: white">NOM & PRENOM</th>
@@ -90,7 +90,7 @@
 			</table>
 		</div>
 		<div class="panel-footer text-center" >
-			Footer
+
 		</div>
 	</div>
 

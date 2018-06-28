@@ -23,7 +23,7 @@
         <img src="/public/img/loader.gif" style="width: 100%;height: 100%"/>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style=" background: rgb(238, 110, 115) !important;position: sticky;top: 0;left: 0">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary" style=" background: rgb(110, 170, 238) !important;position: sticky;top: 0;left: 0">
     <a class="navbar-brand" href="#">SEN FORAGE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -55,7 +55,7 @@
     </div>
 </nav>
 <div class="container">
-    <h2 id="title" class="h2 text-center label label-primary" style="background: rgb(238, 110, 115);color:white;border: solid white 2px;border-radius: 50%;height: 60px ;padding-top:10px;text-align: center;width: 50%;margin: 5px  auto">SEN FORAGE</h2>
+    <h2 id="title" class="h2 text-center label label-primary" style="background:rgb(110, 170, 238);color:white;border: solid white 2px;border-radius: 50%;height: 60px ;padding-top:10px;text-align: center;width: 50%;margin: 5px  auto">SEN FORAGE</h2>
 
     <div id="alert" >
 
@@ -100,6 +100,7 @@
     {block name="js"}
 
     {/block}
+
 
 </body>
 </html>

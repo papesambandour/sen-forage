@@ -12,7 +12,7 @@
 				</div>
 				<div class="col-sm-3 "  style="position: relative;top:0">
 
-					<select name="villageInClient" id="villageInClient" style="width: 100%;background: rgb(238, 110, 115);border: 1px solid white;height: 30px;color: white">
+					<select name="villageInClient" id="villageInClient" style="width: 100%;background: rgb(110, 170, 238);border: 1px solid white;height: 30px;color: white">
 						{if $idlaastvillageinclient == ""}
 							<option selected value="">Tous les village</option>
 						{/if}
@@ -32,7 +32,7 @@
 				</div>
 				<div class="col-sm-3 "  style="position: relative;top:0">
 
-					<select name="month" id="month" style="width: 100%;background: rgb(238, 110, 115);border: 1px solid white;height: 30px;color: white">
+					<select name="month" id="month" style="width: 100%;background: rgb(110, 170, 238);border: 1px solid white;height: 30px;color: white">
 						{foreach from=$mois key=k  item=ligne}
 							{if $month == $k + 1}
 								<option selected value="{$k +1 }">{$ligne}</option>
@@ -45,7 +45,7 @@
 				</div>
 				<div class="col-sm-3 "  style="position: relative;top:0">
 
-					<select name="year" id="year" style="width: 100%;background: rgb(238, 110, 115);border: 1px solid white;height: 30px;color: white">
+					<select name="year" id="year" style="width: 100%;background:rgb(110, 170, 238);border: 1px solid white;height: 30px;color: white">
 						{foreach from=$annes item=ligne}
 							{if $year == $ligne}
 								<option selected value="{$ligne}">{$ligne}</option>
@@ -62,7 +62,7 @@
 
 		<div class="panel-body">
 			<table class="table table-bordered table-hover table-striped" id="tabEtu">
-				<thead style="background: rgb(238, 110, 115) ; color: white !important;">
+				<thead style="background: rgb(110, 170, 238); color: white !important;">
 				<tr >
 					<th style="color: white">CODE FACTURE</th>
 					<th style="color: white">NOM & PRENOM</th>
@@ -143,7 +143,7 @@
 			</table>
 		</div>
 		<div class="panel-footer text-center" >
-			Footer
+
 		</div>
 	</div>
 
