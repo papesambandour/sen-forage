@@ -4,7 +4,7 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 
-			<button class="btn btn-success" id="exportPdf" onclick="exportmonth(this)"><i class="fa fa-plus"> Exporter</i></button>
+			<button class="btn btn-success" id="exportPdf" onclick="exportmonth(this)"><i class="far fa-file-pdf"> Exporter</i></button>
 			<div class="row">
 				<div class="col-sm-3 " style="position: relative;top:0">
 					<input class="form-control pull-right" type="text" placeholder="Rechercher" id="searchFacture"  />
@@ -37,7 +37,7 @@
 							{if $month == $k + 1}
 								<option selected value="{$k +1 }">{$ligne}</option>
 							{/if}
-							{if $month != $ligne}
+							{if $month != $k + 1 }
 								<option  value="{$k + 1}">{$ligne}</option>
 							{/if}
 						{/foreach}
@@ -66,8 +66,10 @@
 				<tr >
 					<th style="color: white">CODE FACTURE</th>
 					<th style="color: white">NOM & PRENOM</th>
-					<th style="color: white">PRIX</th>
-					<th style="color: white">CONSOMATION</th>
+					<th style="color: white">MONTANT(xof)</th>
+					<th style="color: white">CONSOMATION(m3)</th>
+					<th style="color: white">TAXE(xof)</th>
+					<th style="color: white">TOTAL(xof)</th>
 					<th style="color: white">A Payée</th>
 					<th style="color: white">Exporter</th>
 				</tr>
@@ -75,11 +77,13 @@
 				<tbody id="tbody">
 				{foreach from=$clients item=ligne}
 					<tr>
-						<td id="id{$ligne.idClient}" >FACT-{$ligne.facture.idfacture}</td>
-						<td id="nom{$ligne.idClient}" >  {$ligne.nomcomplet}</td>
-						<td id="tel{$ligne.idClient}" > {$ligne.tel}</td>
-						<td id="adresse{$ligne.idClient}" > {$ligne.adresse}</td>
-						<td id="etat{$ligne.idClient}" >
+						<td >FACT-{$ligne.facture.idfacture}</td>
+						<td >  {$ligne.nomcomplet}</td>
+						<td > {$ligne.facture.prix_htcc}</td>
+						<td > {$ligne.facture.consommation}</td>
+						<td > {$ligne.facture.taxe}</td>
+						<td > {$ligne.facture.prix_ttc}</td>
+						<td >
 							{if $ligne.facture.payee == "1"}
 								<div class="etatTrans">
 									<div class="oui">
@@ -127,7 +131,7 @@
 							{/if}
 						</td>
 						<td>
-							<button class="btn btn-primary btn-sm" value="{$ligne.facture.idfacture}" data-idc="{$ligne.idClient}" onclick="exporter(this)">Exporter</button>
+							<button class="btn btn-primary btn-sm" value="{$ligne.facture.idfacture}" data-idc="{$ligne.idClient}" onclick="exporter(this)"><i class="far fa-file-pdf"> Exporter</i></button>
 						</td>
 
 					</tr>

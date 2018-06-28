@@ -19,6 +19,7 @@ namespace Controller ;
     use Model\Config;
     use Model\Facture;
     use Model\Village;
+    use function PHPSTORM_META\type;
     use Spipu\Html2Pdf\Html2Pdf;
     use Spipu\Html2Pdf\Exception\Html2PdfException;
     use Spipu\Html2Pdf\Exception\ExceptionFormatter;
@@ -47,7 +48,14 @@ namespace Controller ;
                 $facture = Facture::where('annee','=',$year)->where('mois','=',$month)->where('compteur_id','=',$client->compteur->idcompteur)->get();//si c'est null ca veut dir que on n'a pas encores effectuer de reveler
                 if(count($facture) > 0)
                 {
-                    $client->facture = $facture[0];
+                     $facture = $facture[0];
+                    $prix_htcc = (float)$facture->consommation * (float)Config::get(Config::PRIX_UNITAIRE_LITRE) ;
+                    $taxe = $facture->payeenretart == 1 ? ($prix_htcc * 5)/100 : 0.0;
+                    $prix_ttc = $prix_htcc + $taxe ;
+                    $facture->prix_htcc =$prix_htcc;
+                    $facture->taxe =$taxe;
+                    $facture->prix_ttc = $prix_ttc;
+                    $client->facture = $facture;
                 }else{
                     unset($clients[$key]);
                 }
@@ -60,11 +68,50 @@ namespace Controller ;
 
         public function search($item)
         {
+            $clients =null;
+            $cls = array();
+            $year =Config::get(Config::YEAR);
+            $month = Config::get(Config::MONTH);
+            if(Config::get(Config::LAST_ID_VILLAGE_IN_CLIENT) == "")
+            {
+                $clients =Client::where("estabonne","=",1)->where("nomcomplet","like","%".$item."%")->get();
+            }
+            else
+            {
+                $clients = Client::where("id_village","=",Config::get(Config::LAST_ID_VILLAGE_IN_CLIENT))->where("estabonne","=",1)->where("nomcomplet","like","%".$item."%")->get();
 
+            }
+
+            foreach ($clients as $key => &$client)
+            {
+
+                $client->abonnement = Abonnement::where("id_client","=",$client->idClient)->get()[0];
+                $client->compteur = Compteur::where("id_abonnement","=",$client->abonnement->idabonnement)->get()[0];
+                $facture = Facture::where('annee','=',$year)->where('mois','=',$month)->where('compteur_id','=',$client->compteur->idcompteur)->get();//si c'est null ca veut dir que on n'a pas encores effectuer de reveler
+                if(count($facture) > 0)
+                {
+                    $facture = $facture[0];
+                    $prix_htcc = (float)$facture->consommation * (float)Config::get(Config::PRIX_UNITAIRE_LITRE) ;
+                    $taxe = $facture->payeenretart == 1 ? ($prix_htcc * 5)/100 : 0.0;
+                    $prix_ttc = $prix_htcc + $taxe ;
+                    $facture->prix_htcc =$prix_htcc;
+                    $facture->taxe =$taxe;
+                    $facture->prix_ttc = $prix_ttc;
+                    $client->facture = $facture;
+                    $cls[]=$client ;
+                }else{
+                    unset($clients[$key]);
+                }
+                // die( $client->compteur->estcoupe."");
+
+            }
+
+            echo json_encode($cls);
         }
 
         public function filterClientByVilage(){
             $clients =null;
+            $cls = array();
             Config::set(Config::LAST_ID_VILLAGE_IN_CLIENT,Utils::get("villageInClient"));
             $year = Utils::get("year");
             $month = Utils::get("month");
@@ -80,21 +127,72 @@ namespace Controller ;
 
             }
 
-            foreach ($clients as $key => $client)
+            foreach ($clients as $key => &$client)
             {
+
                 $client->abonnement = Abonnement::where("id_client","=",$client->idClient)->get()[0];
                 $client->compteur = Compteur::where("id_abonnement","=",$client->abonnement->idabonnement)->get()[0];
                 $facture = Facture::where('annee','=',$year)->where('mois','=',$month)->where('compteur_id','=',$client->compteur->idcompteur)->get();//si c'est null ca veut dir que on n'a pas encores effectuer de reveler
                 if(count($facture) > 0)
                 {
-                    $client->facture = $facture[0];
+                    $facture = $facture[0];
+                    $prix_htcc = (float)$facture->consommation * (float)Config::get(Config::PRIX_UNITAIRE_LITRE) ;
+                    $taxe = $facture->payeenretart == 1 ? ($prix_htcc * 5)/100 : 0.0;
+                    $prix_ttc = $prix_htcc + $taxe ;
+                    $facture->prix_htcc =$prix_htcc;
+                    $facture->taxe =$taxe;
+                    $facture->prix_ttc = $prix_ttc;
+                    $client->facture = $facture;
+                    $cls[]=$client ;
                 }else{
                     unset($clients[$key]);
                 }
                 // die( $client->compteur->estcoupe."");
 
             }
-            echo json_encode($clients);
+
+            echo json_encode($cls);
+        }
+        public function gets(){
+            $clients =null;
+            $cls = array();
+            $year =Config::get(Config::YEAR);
+            $month = Config::get(Config::MONTH);
+            if(Config::get(Config::LAST_ID_VILLAGE_IN_CLIENT) == "")
+            {
+                $clients =Client::where("estabonne","=",1)->get();
+            }
+            else
+            {
+                $clients = Client::where("id_village","=",Config::get(Config::LAST_ID_VILLAGE_IN_CLIENT))->where("estabonne","=",1)->get();
+
+            }
+
+            foreach ($clients as $key => &$client)
+            {
+
+                $client->abonnement = Abonnement::where("id_client","=",$client->idClient)->get()[0];
+                $client->compteur = Compteur::where("id_abonnement","=",$client->abonnement->idabonnement)->get()[0];
+                $facture = Facture::where('annee','=',$year)->where('mois','=',$month)->where('compteur_id','=',$client->compteur->idcompteur)->get();//si c'est null ca veut dir que on n'a pas encores effectuer de reveler
+                if(count($facture) > 0)
+                {
+                    $facture = $facture[0];
+                    $prix_htcc = (float)$facture->consommation * (float)Config::get(Config::PRIX_UNITAIRE_LITRE) ;
+                    $taxe = $facture->payeenretart == 1 ? ($prix_htcc * 5)/100 : 0.0;
+                    $prix_ttc = $prix_htcc + $taxe ;
+                    $facture->prix_htcc =$prix_htcc;
+                    $facture->taxe =$taxe;
+                    $facture->prix_ttc = $prix_ttc;
+                    $client->facture = $facture;
+                    $cls[]=$client ;
+                }else{
+                    unset($clients[$key]);
+                }
+                // die( $client->compteur->estcoupe."");
+
+            }
+
+            echo json_encode($cls);
         }
         public function create()
         {
@@ -132,9 +230,17 @@ namespace Controller ;
         }
         public function update($id)
         {
+          // if()
             $facture = Facture::find($id);
             $facture->payee = Utils::get('state');
             $facture->save();
+            if(Utils::get('state')== 1)
+            {
+                $compteur = Compteur::find($facture->compteur_id);
+                $compteur->estcoupe = 0;
+                $compteur->save();
+            }
+
             echo 1;
         }
         public function export(){

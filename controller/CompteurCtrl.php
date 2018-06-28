@@ -16,6 +16,7 @@ namespace Controller ;
     use Model\Client;
     use Model\Compteur;
     use Model\Config;
+    use Model\Facture;
     use Model\Village;
 
     class CompteurCtrl extends Controller {
@@ -56,6 +57,11 @@ namespace Controller ;
         public function get($idCompteur)
         {
             $compteur = Compteur::find($idCompteur);
+            $facture = Facture::where('compteur_id','=',$compteur->idcompteur)->where('mois','=',Config::get(Config::MONTH))->where('annee','=',Config::get(Config::YEAR))->get();
+            if(count($facture) > 0)
+            {
+                $compteur->facture = $facture[0];
+            }
             echo json_encode($compteur);
         }
 

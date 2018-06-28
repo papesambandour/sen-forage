@@ -55,11 +55,11 @@
 						<td id="villa{$ligne.idClient}" > {$ligne.village.nomvillage}</td>
 						<td id="tel{$ligne.idClient}" > {$ligne.tel}</td>
 						<td id="etat{$ligne.idClient}" >
-							{if $ligne.compteur.escoupe  == 0}
+							{if $ligne.compteur.estcoupe  == 0}
 								<label style="background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px" >NON</label>
 							{/if}
-							{if $ligne.compteur.escoupe  == 1}
+							{if $ligne.compteur.estcoupe  == 1}
 								<label style="background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     padding: 9px">OUI</label>
 							{/if}
@@ -108,7 +108,7 @@
 						</div>
 						<div class="form-group">
 							<label for="cMensuelcmpt" class="control-label">Mettre consommation mois courant en m3:</label>
-							<input type="text" class="form-control" id="cMensuelcmpt" name="cMensuelcmpt" required ">
+							<input type="text" class="form-control" id="cMensuelcmpt" name="cMensuelcmpt" required onkeyup="this.value = this.value.replace(/[^0-9]/,'')" ">
 							<input type="hidden" class="form-control" id="idCompteur" name="idCompteur" required ">
 						</div>
 
@@ -124,7 +124,7 @@
 							</select>
 						</div>
 						<div class="text-center" style="margin-bottom: 25px">
-							<button type="submit" class="btn btn-primary" >Enregistrer</button>
+							<button type="submit" class="btn btn-primary" id="addRev">Ajouter</button>
 						</div>
 					</form>
 				</div>
@@ -132,97 +132,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- EDITE VILLAGE-->
-	<div class="modal fade" id="editClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<h4 class="modal-title text-center">EDITE CLIENT</h4>
-
-				<div class="modal-body">
-
-					<form id="fmrEditclient">
-
-						<h5 style="color: black;margin-bottom: 10px">Client</h5>
-						<div class="form-group">
-							<label for="nomclientEdit" class="control-label">Nom Complete:</label>
-							<input type="text" class="form-control" id="nomclientEdit" name="nomclientEdit" required ">
-							<input  type="hidden" id="idclientEdit" name="idclientEdit" required ">
-						</div>
-						<div class="form-group">
-							<label for="telclientEdit" class="control-label">Téléphone:</label>
-							<input type="text" class="form-control" id="telclientEdit" name="telclientEdit" required ">
-						</div>
-						<div class="form-group">
-							<label for="adresseclientEdit" class="control-label">Adresse:</label>
-							<input type="text" class="form-control" id="adresseclientEdit" name="adresseclientEdit" required ">
-						</div>
-						<div class="form-group">
-							<label for="villageClientAdd" class="control-label">Village:</label>
-							<select class="form-control" id="villageClientEdit" name="villageClientEdit" required>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="etatclientEdit" class="control-label">Etat:</label>
-							<select class="form-control" id="etatclientEdit" name="etatclientEdit" required>
-								<option value="" selected hidden>...</option>
-								<option value="1">Activer</option>
-								<option  value="0">Desactiver</option>
-							</select>
-						</div>
-						<div class="text-center" style="margin-bottom: 25px">
-							<button type="submit" class="btn btn-primary" >Enregistrer</button>
-						</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
-	<!-- ADD ABONNEMENT-->
-	<div class="modal fade" id="addAbonClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<h4 class="modal-title text-center">ABONNEMENT CLIENT</h4>
-
-				<div class="modal-body">
-
-					<form id="fmrAddAbonn">
-
-						<h5 style="color: black;margin-bottom: 10px">Client &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <div style="color: blue;">Numero Abonnment: &nbsp;&nbsp;&nbsp;&nbsp;<span id="numAbon" style="color:red"></span></div></h5>
-						<div class="form-group">
-							<label for="nomclientabonnee" class="control-label">Nom Client:</label>
-							<input type="text" readonly="readonly" class="form-control" id="nomclientabonnee" name="nomclientabonnee" />
-							<input type="hidden" class="form-control" id="idclientabonnee" name="idclientabonnee" />
-						</div>
-						<div class="form-group">
-							<label for="dateAbonement" class="control-label">Date:</label>
-							<input type="date" name="dateAbonement" id="dateAbonement" required/>
-						</div>
-						<div class="form-group">
-							<label for="DescriptionAbon" class="control-label">Description:</label>
-							<textarea rows="5" class="form-control" id="DescriptionAbon" name="DescriptionAbon" required>
-							</textarea>
-							<input type="hidden" name="idAbonement" id="idAbonement" value="">
-						</div>
-
-						<div class="text-center" style="margin-bottom: 25px">
-							<button type="submit" class="btn btn-primary" id="btnAbonPopup">Ajouter</button>
-						</div>
-					</form>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
 
 
 {/block}

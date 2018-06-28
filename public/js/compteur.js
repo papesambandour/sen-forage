@@ -57,7 +57,7 @@ $(function () {
                     var html = "";
                     for(var i = 0 ; i < dataParsed.length ; i++)
                     {
-                        var estcoupee = dataParsed[i].compteur.escoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
+                        var estcoupee = dataParsed[i].compteur.estcoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                             "    padding: 9px\">OUI</label>" : "<label style=\"background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                             "    padding: 9px\" >NON</label>";
                         html += "<tr>\n" +
@@ -98,7 +98,7 @@ $(function () {
                     var html = "";
                     for(var i = 0 ; i < dataParsed.length ; i++)
                     {
-                        var estcoupee = dataParsed[i].compteur.escoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
+                        var estcoupee = dataParsed[i].compteur.estcoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                             "    padding: 9px\">OUI</label>" : "<label style=\"background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                             "    padding: 9px\" >NON</label>";
                         html += "<tr>\n" +
@@ -143,7 +143,7 @@ $(function () {
                 var html = "";
                 for(var i = 0 ; i < dataParsed.length ; i++)
                 {
-                    var estcoupee = dataParsed[i].compteur.escoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
+                    var estcoupee = dataParsed[i].compteur.estcoupe == 1 ? "<label style=\"background: red;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                         "    padding: 9px\">OUI</label>" : "<label style=\"background: green;color: white;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\n" +
                         "    padding: 9px\" >NON</label>";
                     html += "<tr>\n" +
@@ -185,6 +185,7 @@ function showAddRelever(e) {
         $(elem).text(client[$(elem).attr('data-columname')])
     });
 */
+
         $.get('compteur/get/'+$(e).val()).
         done(function (data) {
 
@@ -197,7 +198,15 @@ function showAddRelever(e) {
             var dataParsed = JSON.parse(data);
             $("#cccmpt").val(dataParsed.consommationl + " métre cube ("+  dataParsed.consommationc+" m3)");
             $("#idCompteur").val(dataParsed.idcompteur);
-            $("#cMensuelcmpt").val(dataParsed.conso_encours);
+            if(dataParsed.facture){
+                $("#cMensuelcmpt").val(dataParsed.facture.consommation);
+                $('#addRev').text('Editer');
+            }else {
+                $("#cMensuelcmpt").val('');
+                $('#addRev').text('Ajouter');
+            }
+
+
             loaderEnd();
         }).fail(function (err) {
             loaderEnd();
